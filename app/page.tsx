@@ -69,7 +69,7 @@ export default function Page() {
   }, [trackIdx])
 
   return (
-    <main className="relative min-h-dvh w-full overflow-hidden bg-background selection:bg-primary/30">
+    <main className="relative min-h-dvh w-full overflow-x-hidden bg-background selection:bg-primary/30">
       {/* Global Audio Element */}
       <audio
         ref={audioRef}
@@ -103,15 +103,15 @@ export default function Page() {
       <Heart className={`animate-organic-float pointer-events-none absolute bottom-[18%] right-[8%] size-7 fill-primary/10 text-primary/10 transition-all duration-700 ${isExpanded ? 'opacity-0 scale-50 blur-md' : 'opacity-100'}`} style={{ animationDelay: '3.5s' }} aria-hidden="true" />
 
       {/* Main Content Experience */}
-      <div className={`relative z-10 flex min-h-dvh w-full flex-col items-center justify-between p-4 pb-6 md:p-12 transition-all duration-700 ease-in-out ${isExpanded ? 'scale-90 opacity-40 blur-md pointer-events-none' : 'scale-100 opacity-100 blur-0'}`}>
+      <div className={`relative z-10 flex h-dvh w-full flex-col items-center justify-center p-3 sm:p-4 md:min-h-dvh md:h-auto md:justify-between md:p-12 transition-all duration-700 ease-in-out ${isExpanded ? 'scale-90 opacity-40 blur-md pointer-events-none' : 'scale-100 opacity-100 blur-0'}`}>
 
-        <div className="flex-1 flex items-center justify-center w-full">
-          <div className="relative flex w-full max-w-6xl flex-col items-center justify-center gap-6 md:flex-row md:gap-24">
+        <div className="flex w-full flex-1 items-center justify-center">
+          <div className="relative flex w-full max-w-6xl flex-col items-center justify-center gap-2 sm:gap-4 md:flex-row md:gap-24">
 
             {/* Left Wing: Links - Floating & Offset */}
             <div className="order-2 w-full max-w-[320px] transition-all duration-700 md:order-1 md:translate-x-4 md:translate-y-8">
-              <div className="premium-glass premium-glass-hover rounded-[2.5rem] p-5 sm:p-8 animate-fluid-entrance" style={{ animationDelay: '0.3s' }}>
-                <div className="mb-6 flex items-center gap-3">
+              <div className="premium-glass premium-glass-hover rounded-[1.75rem] p-3 sm:rounded-[2.5rem] sm:p-8 animate-fluid-entrance" style={{ animationDelay: '0.3s' }}>
+                <div className="mb-2 hidden items-center gap-3 sm:flex sm:mb-6">
                   <div className="size-2 rounded-full bg-primary animate-pulse" />
                   <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground/60">Connections</span>
                 </div>
@@ -128,7 +128,7 @@ export default function Page() {
 
             {/* Right Wing: Music - Floating & Offset */}
             <div className="order-3 w-full max-w-[360px] transition-all duration-700 md:order-3 md:-translate-x-4 md:-translate-y-12">
-              <div className="premium-glass premium-glass-hover rounded-[2.5rem] p-4 sm:p-6 animate-fluid-entrance" style={{ animationDelay: '0.5s' }}>
+              <div className="premium-glass premium-glass-hover rounded-[1.75rem] p-2 sm:rounded-[2.5rem] sm:p-6 animate-fluid-entrance" style={{ animationDelay: '0.5s' }}>
                 <MusicPlayerCompact
                   isPlaying={isPlaying}
                   onPlayingChange={setIsPlaying}
@@ -146,7 +146,7 @@ export default function Page() {
         </div>
 
         {/* Final touch: Minimalist footer */}
-        <footer className="flex flex-col items-center gap-2 text-center">
+        <footer className="hidden flex-col items-center gap-2 text-center md:flex">
           <p className="font-mono text-[9px] tracking-[0.4em] text-muted-foreground/40 uppercase">
             Existence over Templates
           </p>

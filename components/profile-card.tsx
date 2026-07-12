@@ -55,7 +55,7 @@ export function ProfileCard({ isPlaying }: { isPlaying: boolean }) {
   return (
     <section
       aria-label="Профиль"
-      className="flex flex-col items-center gap-4 sm:gap-6 text-center transition-transform duration-200 ease-out"
+      className="flex flex-col items-center gap-1 sm:gap-6 text-center transition-transform duration-200 ease-out"
       style={{
         transform: `perspective(1000px) rotateX(${rotate.x}deg) rotateY(${rotate.y}deg)`
       }}
@@ -74,7 +74,7 @@ export function ProfileCard({ isPlaying }: { isPlaying: boolean }) {
           aria-hidden="true"
         />
 
-        <div className="relative size-24 sm:size-40 overflow-hidden rounded-full border-4 border-white/50 bg-secondary shadow-[0_20px_50px_oklch(0.72_0.18_350_/_0.2)] transition-transform duration-500 group-hover:scale-105">
+        <div className="relative size-16 sm:size-40 overflow-hidden rounded-full border-4 border-white/50 bg-secondary shadow-[0_20px_50px_oklch(0.72_0.18_350_/_0.2)] transition-transform duration-500 group-hover:scale-105">
           {avatarError ? (
             <div className="flex size-full items-center justify-center font-mono text-5xl font-bold text-primary">
               R
@@ -109,11 +109,11 @@ export function ProfileCard({ isPlaying }: { isPlaying: boolean }) {
       </div>
 
       <div className="flex flex-col items-center gap-2">
-        <h1 className="text-3xl sm:text-6xl font-black tracking-tighter text-balance">
+        <h1 className="text-xl sm:text-6xl font-black tracking-tighter text-balance">
           ramochka<span className="text-primary">_</span>
         </h1>
-        <div className="relative px-4 py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
-          <p className="min-h-5 font-mono text-xs text-muted-foreground sm:text-sm">
+        <div className="relative max-w-[280px] px-2 py-0 sm:px-4 sm:py-1 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm">
+          <p className="min-h-4 truncate font-mono text-[10px] text-muted-foreground sm:min-h-5 sm:text-sm">
             {typed}
             <span className="text-primary animate-blink">▌</span>
           </p>

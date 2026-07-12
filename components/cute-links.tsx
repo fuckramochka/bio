@@ -28,14 +28,14 @@ const LINKS = [
 
 export function CuteLinks() {
   return (
-    <nav aria-label="Мои ссылки" className="flex w-full flex-col gap-2 sm:gap-3">
+    <nav aria-label="Мои ссылки" className="flex w-full flex-col gap-1 sm:gap-3">
       {LINKS.map((link) => (
         <a
           key={link.label}
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative flex items-center gap-3 rounded-2xl border border-white/40 bg-white/30 p-2 sm:p-3 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:bg-white/50 hover:shadow-xl active:scale-95"
+          className="group relative flex items-center gap-2.5 rounded-xl border border-white/40 bg-white/30 px-2.5 py-1 sm:gap-3 sm:rounded-2xl sm:p-3 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:bg-white/50 hover:shadow-xl active:scale-95"
         >
           {/* Accent glow on hover */}
           <div
@@ -44,14 +44,14 @@ export function CuteLinks() {
           />
 
           <span
-            className="relative z-10 flex size-8 sm:size-10 shrink-0 items-center justify-center rounded-xl bg-white/60 text-foreground shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground"
+            className="relative z-10 flex size-6 sm:size-10 shrink-0 items-center justify-center rounded-lg sm:rounded-xl bg-white/60 text-foreground shadow-sm transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground"
           >
             {link.icon}
           </span>
 
           <span className="relative z-10 min-w-0 flex-1">
-            <span className="block text-sm font-bold tracking-tight">{link.label}</span>
-            <span className="block truncate text-[10px] sm:text-[11px] text-muted-foreground/80">{link.desc}</span>
+            <span className="block text-[11px] font-bold tracking-tight sm:text-sm">{link.label}</span>
+            <span className="block truncate text-[8px] sm:text-[11px] text-muted-foreground/80">{link.desc}</span>
           </span>
 
           <ArrowUpRight

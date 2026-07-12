@@ -59,7 +59,7 @@ function WaveProgress({
         aria-valuemax={100}
         aria-valuenow={Math.round(progress)}
         tabIndex={0}
-        className={`relative ${compact ? 'h-8' : 'h-10'} w-full cursor-pointer touch-none select-none group`}
+        className={`relative ${compact ? 'h-6' : 'h-10'} w-full cursor-pointer touch-none select-none group`}
         onPointerDown={(e) => {
           e.currentTarget.setPointerCapture(e.pointerId)
           handleSeek(e.clientX)
@@ -159,16 +159,16 @@ export function MusicPlayerCompact({
   return (
     <section
       aria-label="Музыкальный плеер"
-      className="relative w-full rounded-2xl border border-white/40 bg-white/30 p-3 sm:p-4 backdrop-blur-md transition-all duration-500 hover:bg-white/50"
+      className="relative w-full rounded-xl border border-white/40 bg-white/30 p-2 sm:rounded-2xl sm:p-4 backdrop-blur-md transition-all duration-500 hover:bg-white/50"
     >
       <button
         type="button"
         onClick={() => setIsExpanded(true)}
         aria-label="Открыть плеер"
-        className="flex w-full items-center gap-3 sm:gap-4 text-left transition-colors group"
+        className="flex w-full items-center gap-2.5 sm:gap-4 text-left transition-colors group"
       >
         <div
-          className={`relative flex size-10 sm:size-12 shrink-0 items-center justify-center overflow-hidden rounded-xl shadow-sm transition-all duration-500 ${
+          className={`relative flex size-8 sm:size-12 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:rounded-xl shadow-sm transition-all duration-500 ${
             isPlaying ? 'animate-pulse-glow scale-105' : ''
           }`}
           aria-hidden="true"
@@ -188,7 +188,7 @@ export function MusicPlayerCompact({
               e.stopPropagation()
               togglePlay()
             }}
-            className={`flex size-9 sm:size-10 items-center justify-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-90 ${
+            className={`flex size-8 sm:size-10 items-center justify-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-90 ${
               isPlaying ? 'bg-primary text-primary-foreground' : 'bg-white/80 text-foreground'
             }`}
           >
@@ -201,16 +201,16 @@ export function MusicPlayerCompact({
               e.stopPropagation()
               nextTrack()
             }}
-            className="flex size-9 sm:size-10 items-center justify-center rounded-full bg-white/80 text-foreground shadow-sm transition-all duration-300 hover:scale-110 active:scale-90"
+            className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-white/80 text-foreground shadow-sm transition-all duration-300 hover:scale-110 active:scale-90"
           >
             <SkipForward className="size-3.5 sm:size-4" />
           </span>
         </div>
       </button>
-      <div className="mt-3 sm:mt-4 relative">
+      <div className="mt-1 sm:mt-4 relative">
          <WaveProgress progress={progress} onSeek={() => {}} compact />
       </div>
-      <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
+      <div className="flex items-center justify-center gap-2 mt-1 sm:mt-4">
         {TRACKS.map((t, i) => (
           <button
             key={t.title}
@@ -302,7 +302,7 @@ export function MusicPlayerExpanded({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 overflow-hidden"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden p-3 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label="Плеер"
@@ -320,20 +320,20 @@ export function MusicPlayerExpanded({
         type="button"
         onClick={() => setIsExpanded(false)}
         aria-label="Закрыть плеер"
-        className="absolute top-8 right-8 z-30 flex size-12 items-center justify-center rounded-full bg-black/10 text-foreground shadow-sm backdrop-blur-2xl transition-transform hover:scale-110 active:scale-90"
+        className="absolute right-3 top-3 z-30 flex size-10 items-center justify-center rounded-full bg-black/10 text-foreground shadow-sm backdrop-blur-2xl transition-transform hover:scale-110 active:scale-90 sm:right-8 sm:top-8 sm:size-12"
       >
         <ChevronDown className="size-6" />
       </button>
 
-      <div className="relative z-10 w-full max-w-md animate-spring-up flex flex-col items-center">
-        <div className="relative w-full aspect-square mb-10 group">
+      <div className="relative z-10 flex w-full max-w-md flex-col items-center animate-spring-up">
+        <div className="relative mb-4 aspect-square w-auto max-h-[30dvh] max-w-[30dvh] sm:mb-10 sm:max-h-none sm:max-w-none sm:w-full group">
           <div className={`absolute inset-0 rounded-[2rem] bg-primary/10 blur-3xl transition-all duration-700 ${isPlaying ? 'scale-110 opacity-60' : 'scale-100 opacity-30'}`} />
           <div className={`relative w-full h-full overflow-hidden rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.3)] transition-all duration-700 ease-out ${isPlaying ? 'scale-100 rotate-0' : 'scale-90 rotate-1'}`}>
             <img src={track.cover || "/placeholder.svg"} alt={`Обложка: ${track.title}`} className="size-full object-cover" />
           </div>
         </div>
 
-        <div className="w-full flex flex-col items-start mb-8 px-2">
+        <div className="mb-4 flex w-full flex-col items-start px-2 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-foreground truncate w-full text-left leading-tight">
             {track.title}
           </h2>
@@ -342,7 +342,7 @@ export function MusicPlayerExpanded({
           </p>
         </div>
 
-        <div className="w-full rounded-[2.5rem] border border-white/30 bg-white/10 p-6 sm:p-8 backdrop-blur-3xl shadow-2xl flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-4 rounded-[1.75rem] border border-white/30 bg-white/10 p-4 backdrop-blur-3xl shadow-2xl sm:gap-8 sm:rounded-[2.5rem] sm:p-8">
           <div className="flex flex-col gap-2">
             <WaveProgress
               progress={progress}
