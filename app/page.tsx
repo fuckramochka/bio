@@ -106,7 +106,7 @@ export default function Page() {
       <div className={`relative z-10 flex h-dvh w-full flex-col items-center justify-center p-3 sm:p-4 md:min-h-dvh md:h-auto md:justify-between md:p-12 transition-all duration-700 ease-in-out ${isExpanded ? 'scale-90 opacity-40 blur-md pointer-events-none' : 'scale-100 opacity-100 blur-0'}`}>
 
         <div className="flex w-full flex-1 items-center justify-center">
-          <div className="relative flex w-full max-w-6xl flex-col items-center justify-center gap-2 sm:gap-4 md:flex-row md:gap-24">
+          <div className="relative flex w-full max-w-6xl flex-col items-center justify-center gap-3 sm:gap-4 md:flex-row md:gap-24">
 
             {/* Left Wing: Links - Floating & Offset */}
             <div className="order-2 w-full max-w-[320px] transition-all duration-700 md:order-1 md:translate-x-4 md:translate-y-8">

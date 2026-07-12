@@ -59,7 +59,7 @@ function WaveProgress({
         aria-valuemax={100}
         aria-valuenow={Math.round(progress)}
         tabIndex={0}
-        className={`relative ${compact ? 'h-6' : 'h-10'} w-full cursor-pointer touch-none select-none group`}
+        className={`relative ${compact ? 'h-8' : 'h-10'} w-full cursor-pointer touch-none select-none group`}
         onPointerDown={(e) => {
           e.currentTarget.setPointerCapture(e.pointerId)
           handleSeek(e.clientX)
@@ -159,7 +159,7 @@ export function MusicPlayerCompact({
   return (
     <section
       aria-label="Музыкальный плеер"
-      className="relative w-full rounded-xl border border-white/40 bg-white/30 p-2 sm:rounded-2xl sm:p-4 backdrop-blur-md transition-all duration-500 hover:bg-white/50"
+      className="relative w-full max-w-[260px] mx-auto sm:max-w-none rounded-xl border border-white/40 bg-white/30 p-2.5 sm:rounded-2xl sm:p-4 backdrop-blur-md transition-all duration-500 hover:bg-white/50"
     >
       <button
         type="button"
@@ -168,7 +168,7 @@ export function MusicPlayerCompact({
         className="flex w-full items-center gap-2.5 sm:gap-4 text-left transition-colors group"
       >
         <div
-          className={`relative flex size-8 sm:size-12 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:rounded-xl shadow-sm transition-all duration-500 ${
+          className={`relative flex size-9 sm:size-12 shrink-0 items-center justify-center overflow-hidden rounded-lg sm:rounded-xl shadow-sm transition-all duration-500 ${
             isPlaying ? 'animate-pulse-glow scale-105' : ''
           }`}
           aria-hidden="true"
@@ -188,7 +188,7 @@ export function MusicPlayerCompact({
               e.stopPropagation()
               togglePlay()
             }}
-            className={`flex size-8 sm:size-10 items-center justify-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-90 ${
+            className={`flex size-9 sm:size-10 items-center justify-center rounded-full transition-all duration-300 shadow-sm hover:scale-110 active:scale-90 ${
               isPlaying ? 'bg-primary text-primary-foreground' : 'bg-white/80 text-foreground'
             }`}
           >
@@ -201,16 +201,16 @@ export function MusicPlayerCompact({
               e.stopPropagation()
               nextTrack()
             }}
-            className="flex size-8 sm:size-10 items-center justify-center rounded-full bg-white/80 text-foreground shadow-sm transition-all duration-300 hover:scale-110 active:scale-90"
+            className="flex size-9 sm:size-10 items-center justify-center rounded-full bg-white/80 text-foreground shadow-sm transition-all duration-300 hover:scale-110 active:scale-90"
           >
             <SkipForward className="size-3.5 sm:size-4" />
           </span>
         </div>
       </button>
-      <div className="mt-1 sm:mt-4 relative">
+      <div className="mt-1.5 sm:mt-4 relative">
          <WaveProgress progress={progress} onSeek={() => {}} compact />
       </div>
-      <div className="flex items-center justify-center gap-2 mt-1 sm:mt-4">
+      <div className="flex items-center justify-center gap-2 mt-1.5 sm:mt-4">
         {TRACKS.map((t, i) => (
           <button
             key={t.title}
