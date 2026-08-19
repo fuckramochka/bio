@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>тут рамочка</title>
+    <meta name="description" content="Личная страница рамочка: почти разработчик почти програмист. Проекты, ссылки и контакты.">
+    <meta name="keywords" content="рамочка, ramochka, python, frontend, void linux, haruka, юзербот">
+    <link rel="icon" href="icon.png" type="image/png">
+
+    <!-- Google Fonts & Material Symbols Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="assets/common.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <style>
+        :root {
+            --primary: #e0567e;
+            --acc: #e0567e;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Видео-фон с ramochka.vercel.app для ПК и Телефона -->
+    <div class="backdrop" id="backdrop-container" data-ready="true">
+        <video class="backdrop__video" id="bg-video" autoplay loop muted playsinline poster="video/wide-poster.webp">
+            <source id="bg-video-src-webm" src="video/wide.webm" type="video/webm">
+            <source id="bg-video-src-mp4" src="video/wide.mp4" type="video/mp4">
+        </video>
+        <div class="backdrop__scrim"></div>
+    </div>
+
+    <!-- Всплывающий MD3 Toast для уведомлений -->
+    <div id="md3-toast" class="md3-toast">
+        <span class="material-symbols-rounded toast-icon">check_circle</span>
+        <span id="toast-text" class="toast-msg">Скопировано в буфер обмена! ✨</span>
+    </div>
+
+    <!-- Мобильная волнообразная навигация -->
+    <div id="mobile-wave-nav">
+        <div class="nav-base-line"></div>
+        <div class="nav-active-line" id="mobile-active-line"></div>
+        <div class="wave-bulge-container" id="mobile-wave-bulge">
+            <svg viewBox="0 0 80 12" preserveAspectRatio="none">
+                <path d="M 0 0 C 20 0, 30 12, 40 12 C 50 12, 60 0, 80 0 Z" />
+            </svg>
+        </div>
+        <div class="mobile-nav-click-zones">
+            <div class="click-zone" data-index="0"></div>
+            <div class="click-zone" data-index="1"></div>
+            <div class="click-zone" data-index="2"></div>
+            <div class="click-zone" data-index="3"></div>
+            <div class="click-zone" data-index="4"></div>
+            <div class="click-zone" data-index="5"></div>
+            <div class="click-zone" data-index="6"></div>
+        </div>
+    </div>
+
+    <div id="snow-container"></div>
+    <div id="ndots"></div>
+
+    <div id="wrapper">
+        <div id="track">
+
+            <!-- СЕКЦИЯ 1: HERO / INTRO -->
+            <section class="sec" id="hero">
+                <div class="si">
+                    <div class="sec-inner anim">
+                        <div class="hero-flex">
+                            <div class="hero-avatar anim">
+                                <img class="media" id="user-avatar" src="avatar.jpg" onerror="this.src='avatar.png'" alt="Аватар рамочка">
+                            </div>
+                            <div class="hero-info">
+                                <h1 class="anim">рамочка</h1>
+                                <p class="bio anim">почти разработчик почти програмист. Пишу на Python, изучаю фронтенд и пилю удобных ботов.</p>
+                                
+                                <!-- MD3 Stack Chips -->
+                                <div class="md3-chip-container anim" style="margin-top: 18px;">
+                                    <span class="md3-chip" onclick="copyToClipboard('Python Developer', 'Стек')">
+                                        <span class="material-symbols-rounded">terminal</span> Python
+                                    </span>
+                                    <span class="md3-chip" onclick="copyToClipboard('Frontend & Web', 'Стек')">
+                                        <span class="material-symbols-rounded">code</span> Frontend
+                                    </span>
+                                    <span class="md3-chip" onclick="copyToClipboard('Telegram Bots & Haruka', 'Стек')">
+                                        <span class="material-symbols-rounded">smart_toy</span> Userbots
+                                    </span>
+                                    <span class="md3-chip" onclick="copyToClipboard('Void Linux', 'ОС')">
+                                        <span class="material-symbols-rounded">dns</span> Void Linux
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 2: LIVE STATS / DASHBOARD -->
+            <section class="sec" id="dashboard">
+                <div class="si">
+                    <div class="sec-inner">
+                        <div class="sec-title anim">Live Stats</div>
+                        <div class="dash-carousel-container anim">
+                            <div class="dash-carousel-viewport">
+                                <div class="dash-carousel-track">
+
+                                    <!-- Слайд 1: Now Playing + Telegram Stats -->
+                                    <div class="dash-slide">
+                                        <div class="dash-grid">
+                                            <!-- Карточка плеера SoundCloud -->
+                                            <div class="dash-card">
+                                                <div class="dash-header-wrap">
+                                                    <div class="dash-header" style="display:inline-flex;align-items:center;">
+                                                        Now Playing (SoundCloud)
+                                                        <div class="audio-equalizer" id="audio-eq" title="SoundCloud Visualizer">
+                                                            <span class="eq-bar bar-1"></span>
+                                                            <span class="eq-bar bar-2"></span>
+                                                            <span class="eq-bar bar-3"></span>
+                                                            <span class="eq-bar bar-4"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="music-actions">
+                                                        <a href="https://soundcloud.com/fuckramochka" id="ym-link" class="music-icon-btn ym-btn" target="_blank" title="Открыть в SoundCloud">
+                                                            <span class="material-symbols-rounded" style="color:var(--acc);">graphic_eq</span>
+                                                        </a>
+                                                        <a href="https://soundcloud.com/fuckramochka" id="track-share-link" class="music-icon-btn share-btn" target="_blank" title="SoundCloud профиль">
+                                                            <span class="material-symbols-rounded">open_in_new</span>
+                                                        </a>
+                                                        <button class="refresh-btn" id="refresh-music" onclick="updateMusic()" title="Обновить">
+                                                            <span class="material-symbols-rounded">refresh</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div id="music-container" class="fade-container">
+                                                    <div class="loader"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Карточка Telegram Stats -->
+                                            <div class="dash-card">
+                                                <div class="dash-header-wrap">
+                                                    <div class="dash-header">Telegram Stats</div>
+                                                    <button class="refresh-btn" id="refresh-tg" onclick="updateTg()" title="Обновить">
+                                                        <span class="material-symbols-rounded">refresh</span>
+                                                    </button>
+                                                </div>
+                                                <div id="tg-container" class="fade-container">
+                                                    <div class="loader"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Слайд 2: Статистика SoundCloud -->
+                                    <div class="dash-slide">
+                                        <div class="dash-grid">
+                                            <div class="dash-card">
+                                                <div class="dash-header-wrap">
+                                                    <div class="dash-header">SoundCloud Профиль</div>
+                                                    <button class="refresh-btn" id="refresh-ym-stats" onclick="updateMusicStats()" title="Обновить">
+                                                        <span class="material-symbols-rounded">refresh</span>
+                                                    </button>
+                                                </div>
+                                                <div id="ym-stats-container" class="fade-container">
+                                                    <div class="loader"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Слайд 3: Плейлист SoundCloud -->
+                                    <div class="dash-slide">
+                                        <div class="dash-grid">
+                                            <div class="dash-card">
+                                                <div class="dash-header-wrap">
+                                                    <div class="dash-header">SoundCloud Плейлист</div>
+                                                    <button class="refresh-btn" id="refresh-ym-top" onclick="updateMusicStats()" title="Обновить">
+                                                        <span class="material-symbols-rounded">refresh</span>
+                                                    </button>
+                                                </div>
+                                                <div id="ym-top-container" class="fade-container">
+                                                    <div class="loader"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="dash-carousel-controls">
+                                <button class="dash-carousel-arrow prev" aria-label="Предыдущий слайд">
+                                    <span class="material-symbols-rounded">chevron_left</span>
+                                </button>
+                                <div class="dash-carousel-dots">
+                                    <span class="dash-dot active" data-slide="0"></span>
+                                    <span class="dash-dot" data-slide="1"></span>
+                                    <span class="dash-dot" data-slide="2"></span>
+                                </div>
+                                <button class="dash-carousel-arrow next" aria-label="Следующий слайд">
+                                    <span class="material-symbols-rounded">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 3: CONNECT & LINKS -->
+            <section class="sec" id="links">
+                <div class="si">
+                    <div class="sec-inner">
+                        <div class="links-carousel-container anim">
+                            <div class="links-carousel-viewport">
+                                <div class="links-carousel-track">
+
+                                    <!-- Слайд 1: Контакты -->
+                                    <div class="links-slide">
+                                        <div class="links-slide-header">
+                                            <span>Connect with me</span>
+                                        </div>
+                                        <div class="grid-links">
+                                            <a href="https://t.me/dkramochka" class="card-link anim in" target="_blank">
+                                                <span class="material-symbols-rounded icon">send</span>
+                                                <span class="text">Telegram (@dkramochka)</span>
+                                            </a>
+                                            <a href="mailto:ramochkadev@gmail.com" class="card-link anim in copyable" onclick="event.preventDefault(); copyToClipboard('ramochkadev@gmail.com', 'Email');">
+                                                <span class="material-symbols-rounded icon">mail</span>
+                                                <span class="text">Email (ramochkadev@gmail.com)</span>
+                                            </a>
+                                            <a href="https://github.com/fuckramochka" class="card-link anim in" target="_blank">
+                                                <span class="material-symbols-rounded icon">code</span>
+                                                <span class="text">GitHub (fuckramochka)</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Слайд 2: Мои каналы -->
+                                    <div class="links-slide">
+                                        <div class="links-slide-header">
+                                            <span>My Channels</span>
+                                        </div>
+                                        <div class="grid-links">
+                                            <a href="http://t.me/tjvyu" class="card-link anim" target="_blank">
+                                                <span class="material-symbols-rounded icon">forum</span>
+                                                <span class="text">tjvyu (про всё и повседневка)</span>
+                                            </a>
+                                            <a href="https://t.me/oijwg" class="card-link anim" target="_blank">
+                                                <span class="material-symbols-rounded icon">kid_star</span>
+                                                <span class="text">oijwg (личное)</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="links-carousel-controls">
+                                <button class="links-carousel-arrow prev" aria-label="Предыдущий слайд">
+                                    <span class="material-symbols-rounded">chevron_left</span>
+                                </button>
+                                <div class="links-carousel-dots">
+                                    <span class="links-dot active" data-slide="0"></span>
+                                    <span class="links-dot" data-slide="1"></span>
+                                </div>
+                                <button class="links-carousel-arrow next" aria-label="Следующий слайд">
+                                    <span class="material-symbols-rounded">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 4: ABOUT ME -->
+            <section class="sec" id="about">
+                <div class="si">
+                    <div class="sec-inner">
+                        <div class="about-carousel-container anim">
+                            <div class="about-carousel-viewport">
+                                <div class="about-carousel-track">
+
+                                    <!-- Слайд 1: О себе -->
+                                    <div class="about-slide">
+                                        <div class="about-slide-header">
+                                            <span>About Me</span>
+                                        </div>
+                                        <div class="about-grid">
+                                            <div class="about-card copyable" onclick="copyToClipboard('рамочка', 'Никнейм')">
+                                                <span class="material-symbols-rounded about-icon">alternate_email</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Никнейм</span>
+                                                    <span class="about-val">рамочка</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('Никита', 'Имя')">
+                                                <span class="material-symbols-rounded about-icon">face</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Имя</span>
+                                                    <span class="about-val">Никита</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('15 лет', 'Возраст')">
+                                                <span class="material-symbols-rounded about-icon">cake</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Возраст</span>
+                                                    <span class="about-val">15 лет</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard(document.getElementById('my-time')?.textContent || 'Europe/Kyiv', 'Время')">
+                                                <span class="material-symbols-rounded about-icon">schedule</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Моё время (Киев)</span>
+                                                    <span class="about-val" id="my-time">00:00:00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Слайд 2: Стек технологий -->
+                                    <div class="about-slide">
+                                        <div class="about-slide-header">
+                                            <span>Стек технологий</span>
+                                        </div>
+                                        <div class="about-grid">
+                                            <div class="about-card copyable" onclick="copyToClipboard('Python', 'Язык')">
+                                                <span class="material-symbols-rounded about-icon">terminal</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Основной язык</span>
+                                                    <span class="about-val">Python</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('HTML5 / CSS3 / JavaScript', 'Frontend')">
+                                                <span class="material-symbols-rounded about-icon">code</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Frontend & Web</span>
+                                                    <span class="about-val">HTML5 / CSS3 / JS</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('Telegram Bots & Haruka Userbot', 'Боты')">
+                                                <span class="material-symbols-rounded about-icon">smart_toy</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Разработка</span>
+                                                    <span class="about-val">Telegram Bots & Userbots</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('Void Linux', 'ОС')">
+                                                <span class="material-symbols-rounded about-icon">dns</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Любимая ОС</span>
+                                                    <span class="about-val">Void Linux</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Слайд 3: Мой ПК -->
+                                    <div class="about-slide">
+                                        <div class="about-slide-header">
+                                            <span>Мой ПК</span>
+                                        </div>
+                                        <div class="about-grid">
+                                            <div class="about-card copyable" onclick="copyToClipboard('Void Linux', 'ОС ПК')">
+                                                <span class="material-symbols-rounded about-icon">computer</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">ОС</span>
+                                                    <span class="about-val">Void Linux</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('AMD Ryzen 5 5600', 'Процессор')">
+                                                <span class="material-symbols-rounded about-icon">memory</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Процессор</span>
+                                                    <span class="about-val">AMD Ryzen 5 5600</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('16 GB RAM', 'ОЗУ')">
+                                                <span class="material-symbols-rounded about-icon">storage</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">ОЗУ</span>
+                                                    <span class="about-val">16 GB RAM</span>
+                                                </div>
+                                            </div>
+                                            <div class="about-card copyable" onclick="copyToClipboard('NVIDIA GeForce RTX 4060', 'Видеокарта')">
+                                                <span class="material-symbols-rounded about-icon">videocam</span>
+                                                <div class="about-info">
+                                                    <span class="about-label">Видеокарта</span>
+                                                    <span class="about-val">NVIDIA RTX 4060</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="about-carousel-controls">
+                                <button class="about-carousel-arrow prev" aria-label="Предыдущий слайд">
+                                    <span class="material-symbols-rounded">chevron_left</span>
+                                </button>
+                                <div class="about-carousel-dots">
+                                    <span class="about-dot active" data-slide="0"></span>
+                                    <span class="about-dot" data-slide="1"></span>
+                                    <span class="about-dot" data-slide="2"></span>
+                                </div>
+                                <button class="about-carousel-arrow next" aria-label="Следующий слайд">
+                                    <span class="material-symbols-rounded">chevron_right</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 5: PORTFOLIO & PROJECTS -->
+            <section class="sec" id="projects">
+                <div class="si">
+                    <div class="sec-inner">
+                        <div class="sec-title anim">Portfolio & Works</div>
+                        <div class="grid-projects">
+                            <a href="https://ramka-market.vercel.app/" class="project-card anim" target="_blank">
+                                <div class="pj-header">
+                                    <span class="pj-title">Ramka Market (Прайс)</span>
+                                    <span class="material-symbols-rounded" style="color:var(--acc)">shopping_bag</span>
+                                </div>
+                                <div class="pj-desc">
+                                    Официальный прайс-лист и витрина цифровых услуг, ботов и разработки.
+                                </div>
+                            </a>
+                            <a href="https://github.com/fuckramochka/haruka" class="project-card anim" target="_blank">
+                                <div class="pj-header">
+                                    <span class="pj-title">Haruka Userbot</span>
+                                    <span class="material-symbols-rounded" style="color:var(--acc)">smart_toy</span>
+                                </div>
+                                <div class="pj-desc">
+                                    Telegram юзербот на Python (форк Heroku). Мощный, удобный и быстрый функционал для Telegram аккаунта.
+                                </div>
+                            </a>
+                            <a href="https://github.com/fuckramochka" class="project-card anim" target="_blank">
+                                <div class="pj-header">
+                                    <span class="pj-title">GitHub Profile</span>
+                                    <span class="material-symbols-rounded" style="color:var(--acc)">code</span>
+                                </div>
+                                <div class="pj-desc">
+                                    Мой GitHub с репозиториями, исходниками проектов, скриптами и пет-разработками.
+                                </div>
+                            </a>
+                            <a href="http://t.me/tjvyu" class="project-card anim" target="_blank">
+                                <div class="pj-header">
+                                    <span class="pj-title">tjvyu Channel</span>
+                                    <span class="material-symbols-rounded" style="color:var(--acc)">forum</span>
+                                </div>
+                                <div class="pj-desc">
+                                    Мой Telegram-канал с постами про всё на свете, повседневную жизнь и разработку.
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 6: MY DEVICE (3D PHONE) -->
+            <section class="sec" id="phone">
+                <div class="si">
+                    <div class="sec-inner">
+                        <div class="sec-title anim">My Device</div>
+                        <div class="phone-container">
+                            <div class="phone-visual anim">
+                                <div class="phone-wrapper is-flipped" id="phone-wrapper">
+                                    <div class="phone-3d" id="phone-3d">
+                                        <div class="face core"></div>
+                                        <div class="face front"></div>
+                                        <div class="face back"></div>
+                                        <div class="face side left"></div>
+                                        <div class="face side right"></div>
+                                        <div class="face cap top"></div>
+                                        <div class="face cap bottom"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="phone-details anim" id="phone-details-container">
+                                <!-- Содержимое генерируется динамически (Google Pixel 8 Pro или iPhone 13 Pro) -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- СЕКЦИЯ 7: FOOTER -->
+            <section class="sec" id="footer">
+                <div class="si">
+                    <div class="sec-inner anim">
+                        <div class="btn-top" title="Наверх">
+                            <span class="material-symbols-rounded">arrow_upward</span>
+                        </div>
+
+                        <div class="footer-wrap">
+                            <div class="footer-logo">рамочка</div>
+                            <div class="footer-copy">
+                                &copy; 2026 рамочка.
+                            </div>
+
+                            <div class="footer-nav">
+                                <a href="#hero"><span class="material-symbols-rounded">home</span> Intro</a>
+                                <a href="#dashboard"><span class="material-symbols-rounded">bar_chart</span> Stats</a>
+                                <a href="#links"><span class="material-symbols-rounded">chat</span> Contact</a>
+                                <a href="#about"><span class="material-symbols-rounded">person</span> About</a>
+                                <a href="#projects"><span class="material-symbols-rounded">work</span> Works</a>
+                                <a href="#phone"><span class="material-symbols-rounded">smartphone</span> Device</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="assets/common.js"></script>
+    <script>
+        /* РАНДОМНАЯ МОДЕЛЬ ТЕЛЕФОНА (Pixel 8 Pro / iPhone 13 Pro) */
+        const PHONES = [
+            {
+                name: "Google Pixel 8 Pro",
+                frontImg: "phones/pixel_front.png",
+                backImg: "phones/pixel_back.png",
+                logoSvg: `<svg viewBox="0 0 24 24" width="34" height="34" fill="currentColor" style="color: var(--acc); flex-shrink: 0;"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.053 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>`,
+                chips: [
+                    { icon: "memory", text: "Google Tensor G3" },
+                    { icon: "bolt", text: "5050 мАч" },
+                    { icon: "photo_camera", text: "50 МП Ultra-Sensing" }
+                ],
+                specs: [
+                    { label: "Процессор", val: "Google Tensor G3 (Titan M2 security)" },
+                    { label: "Дисплей", val: '6.7" Super Actua OLED, 120 Гц, 2400 нит' },
+                    { label: "Батарея", val: "5050 мАч, 30W Fast / Qi Wireless" },
+                    { label: "Камера", val: "Тройная: 50 МП + 48 МП 5x + 48 МП Ультраширик" }
+                ]
+            },
+            {
+                name: "Apple iPhone 13 Pro",
+                frontImg: "phones/iphone_front.png",
+                backImg: "phones/iphone_back.png",
+                logoSvg: `<svg viewBox="0 0 170 170" width="34" height="34" fill="currentColor" style="color: var(--acc); flex-shrink: 0;"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.7-7.85-12.01-14.42-5.74-8.81-10.15-18.72-13.23-29.74-3.08-11.01-4.63-21.78-4.63-32.3 0-14.62 3.8-26.68 11.41-36.19 7.61-9.51 17.07-14.37 28.38-14.59 4.8 0 10.02 1.25 15.66 3.75 5.64 2.5 9.4 3.81 11.28 3.92 1.62-.11 5.61-1.48 11.96-4.12 6.35-2.64 11.66-3.83 15.93-3.59 12.08.76 21.74 5.39 28.98 13.9-10.66 6.42-15.88 15.24-15.66 26.46.22 8.71 3.59 16.05 10.11 22.02 6.53 5.98 14.15 9.36 22.86 10.14-2.5 7.4-5.6 14.8-9.3 22.2zM119.22 31.84c0-7.39 2.67-14.19 8.01-20.4 5.34-6.2 11.75-9.87 19.23-11.02.22 1.09.33 2.18.33 3.27 0 7.39-2.78 14.37-8.34 20.93-5.55 6.56-12.18 10.19-19.88 10.89-.11-1.2-.17-2.4-.17-3.67z"/></svg>`,
+                chips: [
+                    { icon: "memory", text: "Apple A15 Bionic" },
+                    { icon: "bolt", text: "3095 мАч" },
+                    { icon: "photo_camera", text: "Pro 12 МП (3 камеры)" }
+                ],
+                specs: [
+                    { label: "Процессор", val: "Apple A15 Bionic (6 ядер, 5-core GPU)" },
+                    { label: "Дисплей", val: '6.1" Super Retina XDR OLED ProMotion 120 Гц' },
+                    { label: "Батарея", val: "3095 мАч, MagSafe 15W / Fast Charge" },
+                    { label: "Камера", val: "Тройная система 12 МП с 3x оптическим зумом" }
+                ]
+            }
+        ];
+
+        function renderRandomPhone() {
+            const container = document.getElementById('phone-details-container');
+            if (!container) return;
+            const chosen = PHONES[Math.floor(Math.random() * PHONES.length)];
+
+            // Обновляем текстуры 3D модели
+            const frontEl = document.querySelector('.face.front');
+            const backEl = document.querySelector('.face.back');
+            if (frontEl && chosen.frontImg) frontEl.style.backgroundImage = `url('${chosen.frontImg}')`;
+            if (backEl && chosen.backImg) backEl.style.backgroundImage = `url('${chosen.backImg}')`;
+
+            let chipsHtml = chosen.chips.map((c, i) => `
+                <div class="m3-chip ${i === 0 ? 'accent' : ''}">
+                    <span class="material-symbols-rounded" style="font-size: 18px;">${c.icon}</span>
+                    ${c.text}
+                </div>
+            `).join('');
+
+            let specsHtml = chosen.specs.map(s => `
+                <div class="spec-card">
+                    <span class="spec-label">${s.label}</span>
+                    <span class="spec-val">${s.val}</span>
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <div class="brand-header">
+                    ${chosen.logoSvg}
+                    <h2 class="brand-title">${chosen.name}</h2>
+                </div>
+                <div class="chip-group">
+                    ${chipsHtml}
+                </div>
+                <div class="specs-grid">
+                    ${specsHtml}
+                </div>
+            `;
+        }
+        renderRandomPhone();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            /* 3D модель телефона */
+            const phone3D = document.getElementById('phone-3d');
+            const phoneWrapper = document.getElementById('phone-wrapper');
+            const phoneSection = document.getElementById('phone');
+            if (phone3D && phoneWrapper && phoneSection) {
+                let isFlipped = true;
+                let autoFlipInterval = null;
+                let pauseTimeout = null;
+                let isPhoneVisible = false;
+
+                const startAutoFlip = () => {
+                    if (!isPhoneVisible) return;
+                    clearInterval(autoFlipInterval);
+                    autoFlipInterval = setInterval(() => {
+                        triggerFlip();
+                    }, 8000);
+                };
+
+                const triggerFlip = () => {
+                    isFlipped = !isFlipped;
+                    phoneWrapper.classList.toggle('is-flipped');
+                    phone3D.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                };
+
+                const handleMouseMove = (e) => {
+                    if (!isPhoneVisible) return;
+                    const visual = phoneSection.querySelector('.phone-visual');
+                    if (!visual) return;
+                    const rect = visual.getBoundingClientRect();
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    let xAxis = (centerX - e.clientX) / 120;
+                    let yAxis = (centerY - e.clientY) / 120;
+
+                    if (isFlipped) {
+                        xAxis = -xAxis;
+                    }
+
+                    xAxis = Math.max(-4, Math.min(4, xAxis));
+                    yAxis = Math.max(-4, Math.min(4, yAxis));
+
+                    phone3D.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                };
+
+                const handleMouseLeave = () => {
+                    phone3D.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            isPhoneVisible = true;
+                            startAutoFlip();
+                            phoneSection.addEventListener('mousemove', handleMouseMove);
+                            phoneSection.addEventListener('mouseleave', handleMouseLeave);
+                        } else {
+                            isPhoneVisible = false;
+                            clearInterval(autoFlipInterval);
+                            phoneSection.removeEventListener('mousemove', handleMouseMove);
+                            phoneSection.removeEventListener('mouseleave', handleMouseLeave);
+                            phone3D.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                observer.observe(phoneSection);
+
+                phoneWrapper.addEventListener('click', () => {
+                    triggerFlip();
+                    clearInterval(autoFlipInterval);
+                    clearTimeout(pauseTimeout);
+                    pauseTimeout = setTimeout(() => {
+                        startAutoFlip();
+                    }, 25000);
+                });
+            }
+
+            /* Мобильная индикация волны */
+            const mobileWaveBulge = document.getElementById('mobile-wave-bulge');
+            const ndots = document.getElementById('ndots');
+
+            const updateMobileIndicator = (index) => {
+                if (index === -1 || index === undefined) return;
+                const N = 7;
+                const w = window.innerWidth;
+                const segmentWidth = w / N;
+                const centerX = segmentWidth * index + segmentWidth / 2;
+
+                if (mobileWaveBulge) {
+                    const bulgeWidth = 80;
+                    const translateX = centerX - bulgeWidth / 2;
+                    mobileWaveBulge.style.transform = `translateX(${translateX}px)`;
+                }
+            };
+
+            if (ndots) {
+                const observer = new MutationObserver(() => {
+                    const dots = Array.from(ndots.querySelectorAll('.nd'));
+                    const activeIndex = dots.findIndex(d => d.classList.contains('on'));
+                    updateMobileIndicator(activeIndex);
+                });
+                observer.observe(ndots, { subtree: true, attributes: true, attributeFilter: ['class'] });
+
+                setTimeout(() => {
+                    const dots = Array.from(ndots.querySelectorAll('.nd'));
+                    const activeIndex = dots.findIndex(d => d.classList.contains('on'));
+                    updateMobileIndicator(activeIndex);
+                }, 200);
+            }
+
+            window.addEventListener('resize', () => {
+                if (ndots) {
+                    const dots = Array.from(ndots.querySelectorAll('.nd'));
+                    const activeIndex = dots.findIndex(d => d.classList.contains('on'));
+                    updateMobileIndicator(activeIndex);
+                }
+            });
+
+            const clickZones = document.querySelectorAll('.click-zone');
+            clickZones.forEach((zone) => {
+                zone.addEventListener('click', () => {
+                    const idx = parseInt(zone.getAttribute('data-index'), 10);
+                    if (ndots) {
+                        const dots = ndots.querySelectorAll('.nd');
+                        if (dots[idx]) {
+                            dots[idx].click();
+                        }
+                    }
+                });
+            });
+        });
+
+        /* НАСТРОЙКА SOUNDCLOUD ПЛЕЙЛИСТА & ПРОФИЛЯ */
+        const SOUNDCLOUD_CONFIG = {
+            username: "fuckramochka",
+            profileUrl: "https://soundcloud.com/fuckramochka",
+            // Ссылка на любой трек или плейлист с SoundCloud:
+            playlistUrl: "https://soundcloud.com/fuckramochka",
+            tracks: [
+                { title: "92", artist: "Валентин Стрыкало", cover: "https://avatars.yandex.net/get-music-content/6321287/1c8f1e6f.a.22912401-1/400x400", url: "https://soundcloud.com/search?q=Валентин%20Стрыкало%2092", plays: "410k" },
+                { title: "Гори", artist: "Валентин Стрыкало", cover: "https://avatars.yandex.net/get-music-content/5643445/88ee7f07.a.23849182-1/400x400", url: "https://soundcloud.com/search?q=Валентин%20Стрыкало%20Гори", plays: "380k" },
+                { title: "Улица Сталеваров", artist: "Валентин Стрыкало", cover: "https://avatars.yandex.net/get-music-content/4785246/879413a7.a.16735135-1/400x400", url: "https://soundcloud.com/search?q=Валентин%20Стрыкало%20Улица%20Сталеваров", plays: "295k" },
+                { title: "Бесполезно", artist: "Валентин Стрыкало", cover: "https://avatars.yandex.net/get-music-content/6321287/1c8f1e6f.a.22912401-1/400x400", url: "https://soundcloud.com/search?q=Валентин%20Стрыкало%20Бесполезно", plays: "260k" },
+                { title: "Фанк", artist: "Валентин Стрыкало", cover: "https://avatars.yandex.net/get-music-content/4785246/879413a7.a.16735135-1/400x400", url: "https://soundcloud.com/search?q=Валентин%20Стрыкало%20Фанк", plays: "310k" },
+                { title: "4 бурмалдинки", artist: "Бурмалда / Phonk", cover: "https://avatars.yandex.net/get-music-content/175953/f88d2294.a.3797682-1/400x400", url: "https://soundcloud.com/search?q=4%20бурмалдинки", plays: "470k" }
+            ]
+        };
+
+        const TG_API = '/tg_time/index.php?api=1';
+        let currentScTrackIndex = 0;
+        let isScPlaying = false;
+        let scWidget = null;
+
+        // Создаем скрытый SoundCloud фрейм для управления плеером
+        function initSoundCloudWidget() {
+            if (document.getElementById('sc-hidden-iframe')) return;
+            const iframe = document.createElement('iframe');
+            iframe.id = 'sc-hidden-iframe';
+            iframe.style.display = 'none';
+            iframe.allow = 'autoplay';
+            iframe.src = `https://w.soundcloud.com/player/?url=${encodeURIComponent(SOUNDCLOUD_CONFIG.playlistUrl)}&color=%23e0567e&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false`;
+            document.body.appendChild(iframe);
+
+            if (window.SC && window.SC.Widget) {
+                scWidget = SC.Widget(iframe);
+                scWidget.bind(SC.Widget.Events.READY, () => {
+                    scWidget.getSounds((sounds) => {
+                        if (sounds && sounds.length > 0) {
+                            SOUNDCLOUD_CONFIG.tracks = sounds.map(s => ({
+                                title: s.title || 'SoundCloud Track',
+                                artist: s.user ? s.user.username : 'SoundCloud',
+                                cover: s.artwork_url ? s.artwork_url.replace('-large', '-t500x500') : SOUNDCLOUD_CONFIG.tracks[0].cover,
+                                url: s.permalink_url || SOUNDCLOUD_CONFIG.profileUrl,
+                                plays: s.playback_count ? (s.playback_count > 1000 ? Math.round(s.playback_count/1000) + 'k' : s.playback_count) : '🔥'
+                            }));
+                            updateMusic();
+                            updateMusicStats();
+                        }
+                    });
+                });
+
+                scWidget.bind(SC.Widget.Events.PLAY, () => {
+                    isScPlaying = true;
+                    updatePlayButtonState();
+                });
+
+                scWidget.bind(SC.Widget.Events.PAUSE, () => {
+                    isScPlaying = false;
+                    updatePlayButtonState();
+                });
+
+                scWidget.bind(SC.Widget.Events.FINISH, () => {
+                    isScPlaying = false;
+                    updatePlayButtonState();
+                });
+            }
+        }
+
+        function updatePlayButtonState() {
+            const playBtn = document.getElementById('play-toggle');
+            if (playBtn) {
+                playBtn.innerHTML = isScPlaying 
+                    ? `<span style="display:inline-flex;align-items:center;gap:6px;"><span class="material-symbols-rounded" style="font-size:18px;">pause</span> Пауза</span>`
+                    : `<span style="display:inline-flex;align-items:center;gap:6px;"><span class="material-symbols-rounded" style="font-size:18px;">play_arrow</span> Слушать в SoundCloud</span>`;
+            }
+        }
+
+        window.toggleSoundCloudPlay = function(index) {
+            if (typeof index === 'number') {
+                currentScTrackIndex = index;
+                updateMusic();
+            }
+
+            const curTrack = SOUNDCLOUD_CONFIG.tracks[currentScTrackIndex] || SOUNDCLOUD_CONFIG.tracks[0];
+
+            if (scWidget) {
+                try {
+                    if (typeof index === 'number') {
+                        scWidget.skip(index);
+                        scWidget.play();
+                    } else {
+                        scWidget.toggle();
+                    }
+                    return;
+                } catch(e) {}
+            }
+
+            // Прямой переход на SoundCloud трек
+            window.open(curTrack.url, '_blank');
+        };
+
+        window.updateMusic = function () {
+            const container = document.getElementById('music-container');
+            const btn = document.getElementById('refresh-music');
+            if (!container) return;
+
+            if (btn) btn.classList.add('spinning');
+            container.style.opacity = 0;
+
+            const curTrack = SOUNDCLOUD_CONFIG.tracks[currentScTrackIndex] || SOUNDCLOUD_CONFIG.tracks[0];
+
+            setTimeout(() => {
+                container.innerHTML = `
+                    <div class="track-info">
+                        <img src="${curTrack.cover}" alt="cover" class="cover" onerror="this.src='${SOUNDCLOUD_CONFIG.tracks[0].cover}'">
+                        <div class="track-details">
+                            <span style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--acc);font-weight:700;letter-spacing:0.05em;text-transform:uppercase;">
+                                <span style="width:6px;height:6px;border-radius:50%;background:var(--acc);animation:blink 1s infinite alternate;"></span> SoundCloud Playlist
+                            </span>
+                            <div class="dash-title">${curTrack.title}</div>
+                            <div class="dash-artist">${curTrack.artist}</div>
+                        </div>
+                    </div>
+                    <button class="play-btn" id="play-toggle" onclick="toggleSoundCloudPlay()">
+                        <span style="display:inline-flex;align-items:center;gap:6px;"><span class="material-symbols-rounded" style="font-size:18px;">play_arrow</span> Слушать в SoundCloud</span>
+                    </button>
+                `;
+
+                const ymLink = document.getElementById('ym-link');
+                const shareLink = document.getElementById('track-share-link');
+
+                if (ymLink) {
+                    ymLink.href = curTrack.url;
+                    ymLink.style.display = 'flex';
+                }
+
+                if (shareLink) {
+                    shareLink.href = SOUNDCLOUD_CONFIG.profileUrl;
+                    shareLink.style.display = 'flex';
+                }
+
+                container.style.opacity = 1;
+                if (btn) btn.classList.remove('spinning');
+            }, 250);
+        };
+
+        window.updateMusicStats = function () {
+            const statsContainer = document.getElementById('ym-stats-container');
+            const topContainer = document.getElementById('ym-top-container');
+            const statsBtn = document.getElementById('refresh-ym-stats');
+            const topBtn = document.getElementById('refresh-ym-top');
+
+            if (statsBtn) statsBtn.classList.add('spinning');
+            if (topBtn) topBtn.classList.add('spinning');
+
+            if (statsContainer) statsContainer.style.opacity = 0;
+            if (topContainer) topContainer.style.opacity = 0;
+
+            setTimeout(() => {
+                if (statsContainer) {
+                    statsContainer.innerHTML = `
+                        <div class="stat-row">
+                            <div class="stat-info-group">
+                                <span class="stat-label">Профиль</span>
+                                <span class="stat-time">SoundCloud</span>
+                            </div>
+                            <span class="stat-value"><a href="${SOUNDCLOUD_CONFIG.profileUrl}" target="_blank" style="color:var(--acc);text-decoration:none;">@${SOUNDCLOUD_CONFIG.username}</a></span>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-info-group">
+                                <span class="stat-label">В плейлисте</span>
+                                <span class="stat-time">Избранные треки</span>
+                            </div>
+                            <span class="stat-value">${SOUNDCLOUD_CONFIG.tracks.length} треков</span>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat-info-group">
+                                <span class="stat-label">Слушателей</span>
+                                <span class="stat-time">Популярность</span>
+                            </div>
+                            <span class="stat-value">1.2M+ plays</span>
+                        </div>
+                    `;
+                    statsContainer.style.opacity = 1;
+                }
+
+                if (topContainer) {
+                    let html = '<div class="top-tracks-list">';
+                    SOUNDCLOUD_CONFIG.tracks.slice(0, 6).forEach((track, index) => {
+                        html += `
+                            <div onclick="toggleSoundCloudPlay(${index})" class="top-track-row" style="cursor:pointer;" title="Включить ${track.title}">
+                                <span class="track-rank">${index + 1}</span>
+                                <img src="${track.cover}" alt="cover" class="top-track-cover" onerror="this.src='${SOUNDCLOUD_CONFIG.tracks[0].cover}'">
+                                <div class="top-track-details">
+                                    <span class="top-track-title">${track.title}</span>
+                                    <span class="top-track-artist">${track.artist}</span>
+                                </div>
+                                <span class="top-track-count">${track.plays || '▶'}</span>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    topContainer.innerHTML = html;
+                    topContainer.style.opacity = 1;
+                }
+
+                if (statsBtn) statsBtn.classList.remove('spinning');
+                if (topBtn) topBtn.classList.remove('spinning');
+            }, 250);
+        };
+
+        window.updateTg = async function () {
+            const container = document.getElementById('tg-container');
+            const btn = document.getElementById('refresh-tg');
+            if (!container || !btn) return;
+
+            btn.classList.add('spinning');
+            container.style.opacity = 0;
+
+            let data;
+            try {
+                const res = await fetch(TG_API);
+                if (!res.ok) throw new Error("API not reachable");
+                data = await res.json();
+            } catch (err) {
+                data = MOCK_DATA.tg;
+            }
+
+            setTimeout(() => {
+                container.innerHTML = `
+                    <div class="stat-row">
+                        <span class="stat-label">Сегодня в онлайне</span>
+                        <span class="stat-value">${data.today}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">В среднем за день</span>
+                        <span class="stat-value">${data.avg_day}</span>
+                    </div>
+                `;
+                container.style.opacity = 1;
+                btn.classList.remove('spinning');
+            }, 300);
+        };
+
+        // 1. MD3 Floating Toast
+        let toastTimeout = null;
+        window.showToast = function(msg, icon = 'check_circle') {
+            const toast = document.getElementById('md3-toast');
+            const textEl = document.getElementById('toast-text');
+            const iconEl = toast ? toast.querySelector('.toast-icon') : null;
+            if (!toast || !textEl) return;
+
+            textEl.textContent = msg;
+            if (iconEl) iconEl.textContent = icon;
+
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2800);
+        };
+
+        // 2. Универсальное копирование в буфер обмена
+        window.copyToClipboard = function(text, label = '') {
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(`Скопировано: ${label ? label + ' — ' : ''}${text} ✨`, 'done_all');
+                if (navigator.vibrate) navigator.vibrate(25);
+            }).catch(() => {
+                showToast(`Скопировано: ${text}`, 'check');
+            });
+        };
+
+        // 3. Адаптивный видео-фон (Wide для ПК, Tall для телефона)
+        function initResponsiveBackdrop() {
+            const video = document.getElementById('bg-video');
+            if (!video) return;
+
+            const isMobile = window.innerWidth <= 768;
+            const targetPoster = isMobile ? 'video/tall-poster.webp' : 'video/wide-poster.webp';
+            const targetWebm = isMobile ? 'video/tall.webm' : 'video/wide.webm';
+            const targetMp4 = isMobile ? 'video/tall.mp4' : 'video/wide.mp4';
+
+            const currentPoster = video.getAttribute('poster');
+            if (currentPoster !== targetPoster) {
+                video.setAttribute('poster', targetPoster);
+                const srcWebm = document.getElementById('bg-video-src-webm');
+                const srcMp4 = document.getElementById('bg-video-src-mp4');
+                if (srcWebm) srcWebm.src = targetWebm;
+                if (srcMp4) srcMp4.src = targetMp4;
+                video.load();
+                video.play().catch(() => {});
+            }
+        }
+
+        // 4. Часы (Киев Europe/Kyiv)
+        function updateMyClock() {
+            const timeEl = document.getElementById('my-time');
+            if (!timeEl) return;
+
+            const options = {
+                timeZone: 'Europe/Kyiv',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+
+            timeEl.textContent = new Intl.DateTimeFormat('ru-RU', options).format(new Date()) + ' (Киев)';
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initResponsiveBackdrop();
+            initSoundCloudWidget();
+            updateMusic();
+            updateTg();
+            updateMusicStats();
+            updateMyClock();
+            setInterval(updateMyClock, 1000);
+        });
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(initResponsiveBackdrop, 200);
+        }, { passive: true });
+    </script>
+</body>
+
+</html>
